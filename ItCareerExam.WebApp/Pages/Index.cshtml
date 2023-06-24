@@ -1,0 +1,24 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div class="w4-bar">
+        <a class="btn success" style="background:blue; color:white; border:blue">Proba1</a>
+        <a class="btn success" style="background:orange; color:white; border:orange">Proba2</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn success" style="background:orange; color:white; border:orange">Proba3</a>
+            <a class="btn success" style="background:purple; color:white; border:purple" asp-page="./Users/UsersIndex">Users</a>
+        }
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <div>
+            <a>Number of Users: @Model.UserCount</a>
+        </div>
+    }
+</div>
