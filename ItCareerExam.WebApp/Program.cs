@@ -16,7 +16,7 @@ builder.Services
     .AddDefaultIdentity<AppUser>(
         options =>
         {
-            options.SignIn.RequireConfirmedAccount = true;
+            //options.SignIn.RequireConfirmedAccount = true;
         })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
