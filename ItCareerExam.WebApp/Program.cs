@@ -1,5 +1,6 @@
 using ItCareerExam.Data;
 using ItCareerExam.Data.Models;
+using ItCareerExam.WebApp.Seed;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +12,12 @@ builder.Services.AddDbContextFactory<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services
+    .AddDefaultIdentity<AppUser>(
+        options =>
+        {
+            options.SignIn.RequireConfirmedAccount = true;
+        })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddRazorPages();
@@ -34,6 +40,8 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.SeedDatabase();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
