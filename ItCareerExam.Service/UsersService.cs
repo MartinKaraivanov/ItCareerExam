@@ -40,7 +40,7 @@ public class UsersService : IUsersService
 
     public async Task CreateUserEditAsync(UserEditDto userEditDto)
     {
-        AppUser appUser = new AppUser
+        var appUser = new AppUser
         {
             Id = userEditDto.Id.ToString(),
             Email = userEditDto.Email,
@@ -81,14 +81,17 @@ public class UsersService : IUsersService
         }
 
         user.Email = userEditDto.Email;
-        user.UserName = userEditDto.UserName;
+        user.UserName = userEditDto.Email;
         user.FirstName = userEditDto.FirstName;
         user.LastName = userEditDto.LastName;
 
-        await _userManager.UpdateAsync(user); //todo: check result if succeeded
-        await _userManager.RemovePasswordAsync(user); 
-        await _userManager.AddPasswordAsync(user, userEditDto.Password);
-    }
+		var identityResult = await _userManager.UpdateAsync(user);
+
+		if (!identityResult.Succeeded)
+		{
+			throw new Exception($"Greshka: {identityResult.Errors.FirstOrDefault()}");
+		}
+	}
     public async Task DeleteUserEditAsync(string id)
     {
         var user = _userRepository.Retrieve(x => x.Id == id).SingleOrDefault();

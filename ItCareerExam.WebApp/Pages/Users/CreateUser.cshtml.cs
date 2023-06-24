@@ -29,8 +29,8 @@ public class CreateUserModel : PageModel
                 Email = string.Empty, 
                 FirstName = string.Empty,  
                 LastName = string.Empty,
-                UserName = string.Empty,
-                Password = string.Empty
+				UserName = "NO_USERNAME",
+				Password = string.Empty
             };
     }
 
