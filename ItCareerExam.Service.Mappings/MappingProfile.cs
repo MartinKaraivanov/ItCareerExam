@@ -10,5 +10,7 @@ public class MappingProfile : Profile
     {
         CreateMap<AppUser, UserDto>();
         CreateMap<AppUser, UserEditDto>();
+        CreateMap<Restaurant, RestaurantDto>();
+        CreateMap<Review,  ReviewDto>();
     }
 }

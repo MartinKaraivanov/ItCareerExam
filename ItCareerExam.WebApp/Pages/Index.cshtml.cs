@@ -8,17 +8,21 @@ namespace ItCareerExam.WebApp.Pages;
 public class IndexModel : PageModel
 {
     private readonly IUsersService _usersService;
+    private readonly IRestaurantsService _restaurantsService;
 
     public int UserCount { get; set; }
+    public int RestaurantsCount { get; set; }
 
-    public IndexModel(IUsersService usersService)
+    public IndexModel(IUsersService usersService, IRestaurantsService restaurantsService)
     {
         _usersService = usersService;   
+        _restaurantsService = restaurantsService;
     }
 
     public void OnGet()
     {
         UserCount = _usersService.GetNumberOfUsers();
+        RestaurantsCount = _restaurantsService.GetNumberOfRestaurants();
     }
 
 }

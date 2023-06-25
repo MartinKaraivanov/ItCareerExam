@@ -7,7 +7,7 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div class="w4-bar">
-        <a class="btn success" style="background:blue; color:white; border:blue">Proba1</a>
+        <a class="btn success" style="background:blue; color:white; border:blue" asp-page="./Restaurants/RestaurantsIndex">Restaurants</a>
         <a class="btn success" style="background:orange; color:white; border:orange">Proba2</a>
         @if (User.IsInRole("Admin"))
         {
@@ -17,6 +17,9 @@
     </div>
     @if (User.IsInRole("Admin"))
     {
+        <div>
+            <a>Number of Restaurants: @Model.RestaurantsCount</a>
+        </div>
         <div>
             <a>Number of Users: @Model.UserCount</a>
         </div>

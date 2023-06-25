@@ -1,0 +1,70 @@
+﻿@page
+@model ItCareerExam.WebApp.Pages.Restaurants.RestaurantsIndexModel
+@{
+}
+
+<h1>All Restaurants</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <a asp-page="./CreateRestaurant">Add New</a>
+}
+
+<br />
+
+<div>
+    <h3>Search Restaurants By Name</h3>
+    <form method="post">
+        <input asp-for="SearchName" type="search" placeholder="Name" />
+
+        <button type="submit" class="btn success" style="border-color:gold; background-color:gold; color:white">Search</button>
+    </form>
+</div>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Name</p>
+            </th>
+            <th>
+                <p>Description</p>
+            </th>
+            <th>
+                <p>Photo</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model.Restaurants)
+        {
+            <tr>
+                <td>
+                    @r.Name
+                </td>
+                <td>
+                    @r.Description
+                </td>
+                <td>
+                    <img src="@r.PhotoUrl" width="100" height="auto">
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./EditRestaurant" asp-route-id="@r.Id">Edit</a>
+                    }
+                    <a asp-page="./RestaurantDetails" asp-route-id="@r.Id">Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="./DeleteRestaurant" asp-route-id="@r.Id" style="color:red">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="../Index">Back</a>

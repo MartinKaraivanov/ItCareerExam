@@ -1,0 +1,31 @@
+﻿@page
+@model ItCareerExam.WebApp.Pages.Restaurants.RestaurantDetailsModel
+@{
+}
+
+<h1>Restaurant Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Restaurant.Name
+        </dd>
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Restaurant.Description
+        </dd>
+        <dt class="col-sm-2">
+            Photo
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.Restaurant.PhotoUrl" width="600" height="auto" />
+        </dd>
+    </dl>
+</div>
+
+<a asp-page="./RestaurantsIndex">Back</a>

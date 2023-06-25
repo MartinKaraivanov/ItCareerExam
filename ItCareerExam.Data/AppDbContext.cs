@@ -6,6 +6,9 @@ namespace ItCareerExam.Data;
 
 public class AppDbContext : IdentityDbContext<AppUser>
 {
+    public DbSet<Restaurant> Restaurants { get; set; }
+    public DbSet<Review> Reviews { get; set; }
+
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }

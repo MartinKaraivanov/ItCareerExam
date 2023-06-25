@@ -1,0 +1,25 @@
+﻿@page
+@model ItCareerExam.WebApp.Pages.Restaurants.CreateRestaurantModel
+@{
+}
+
+<h1>Create A New Restaurant</h1>
+
+<form method="post">
+	<div class="pb-2">
+		<label asp-for="Restaurant.Name">Name</label>
+		<input asp-for="Restaurant.Name" type="text" rows="2" placeholder="Name" required />
+	</div>
+	<div class="pb-2">
+		<label asp-for="Restaurant.Description">Description</label>
+		<input asp-for="Restaurant.Description" placeholder="Description" required />
+	</div>
+	<div class="pb-2">
+		<label asp-for="Restaurant.PhotoUrl">Photo</label>
+		<input asp-for="Restaurant.PhotoUrl" type="text" placeholder="Photo URL" required />
+	</div>
+
+	<button type="submit" class="btn success" style="border-color:green; background-color:green; color:white">Create</button>
+</form>
+
+<a asp-page="./RestaurantsIndex">Back</a>
