@@ -28,8 +28,19 @@
     </dl>
 </div>
 
-<form method="post">
-    <button type="submit" class="btn danger" style="background-color:midnightblue; color:white; border-color:midnightblue">Make A Review</button>
-</form>
+<br />
+
+<div>
+    <h3>Write A Review</h3>
+    <form method="post">
+        <div class="mb-2">
+            <input asp-for="Feedback" type="text" placeholder="Review" required/>
+        </div>
+        <div>
+            <button type="submit" class="btn danger" style="background-color:midnightblue; color:white; border-color:midnightblue">Submit Review</button>
+        </div>
+    </form>
+    <br />
+</div>
 
 <a asp-page="./RestaurantsIndex">Back</a>

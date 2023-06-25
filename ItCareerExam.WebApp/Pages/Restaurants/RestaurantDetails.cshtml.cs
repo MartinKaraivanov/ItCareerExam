@@ -16,6 +16,9 @@ public class RestaurantDetailsModel : PageModel
 
     public required RestaurantDto Restaurant { get; set; }
 
+    [BindProperty]
+    public string Feedback { get; set; } = string.Empty;
+
     public RestaurantDetailsModel(IRestaurantsService restaurantsService, IReviewsService reviewsService, IUsersService usersService)
     {
         _restaurantsService = restaurantsService;
@@ -28,14 +31,14 @@ public class RestaurantDetailsModel : PageModel
         Restaurant = _restaurantsService.GetRestaurantById(id);
     }
 
-    public async Task<IActionResult> OnPostAsync(Guid id)
+    public async Task<IActionResult> OnPostAsync(Guid id, string Feedback)
     {
         Restaurant = _restaurantsService.GetRestaurantById(id);
 
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         ArgumentNullException.ThrowIfNull(userId);
         var userDto = _usersService.GetUserById(Guid.Parse(userId));
-        var review = new ReviewDto { Id = Guid.NewGuid(), Feedback = "Test Feedback", Restaurant = Restaurant, User = userDto };
+        var review = new ReviewDto { Id = Guid.NewGuid(), Feedback = Feedback, Restaurant = Restaurant, User = userDto };
 
         await _reviewsService.CreateReviewAsync(review);
 
