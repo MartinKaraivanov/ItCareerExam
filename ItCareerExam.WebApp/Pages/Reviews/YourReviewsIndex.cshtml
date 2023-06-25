@@ -1,0 +1,44 @@
+﻿@page
+@model ItCareerExam.WebApp.Pages.Reviews.YourReviewsIndexModel
+@{
+}
+
+<h1>Your Reviews</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Restaurant</p>
+            </th>
+            <th>
+                <p>Photo</p>
+            </th>
+            <th>
+                <p>Feedback</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var review in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    @review.Restaurant.Name
+                </td>
+                <td>
+                    <img src="@review.Restaurant.PhotoUrl" width="100" height="auto">
+                </td>
+                <td>
+                    @review.Feedback
+                </td>
+                <td>
+                    <a asp-page="./DeleteReview" asp-route-id="@review.Id" asp-route-returnPage="YourReviewsIndex" style="color:red">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="../Index">Home</a>
