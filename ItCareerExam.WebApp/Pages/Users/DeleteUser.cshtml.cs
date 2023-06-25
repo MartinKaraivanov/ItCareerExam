@@ -2,6 +2,7 @@ using ItCareerExam.Service.Models;
 using ItCareerExam.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace ItCareerExam.WebApp.Pages.Users;
 
@@ -29,7 +30,12 @@ public class DeleteUserModel : PageModel
 		{
 			ArgumentNullException.ThrowIfNull(UserEditModel);
 
-			await _usersService.DeleteUserEditAsync(UserEditModel.Id);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+			if (userId != UserEditModel.Id)
+			{
+				await _usersService.DeleteUserEditAsync(UserEditModel.Id);
+			}
 
 			return RedirectToPage("./UsersIndex");
 		}
